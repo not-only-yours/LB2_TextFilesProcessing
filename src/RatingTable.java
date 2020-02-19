@@ -43,7 +43,7 @@ public class RatingTable {
         ArrayList<Student> nonBudget = new ArrayList<>();
 
         for (Student student : studentsList) {
-            if (student.getBudget()) {
+            if (!student.getBudget()) {
                 nonBudget.add(student);
             }
         }
@@ -52,11 +52,20 @@ public class RatingTable {
     }
 
     public Double getMinimumScholarRating() {
+
+        for (Student student : studentsList) {
+            student.setScholar(false);
+        }
+
         ArrayList<Student> budget = this.getBudget();
 
         Integer numOfScholars = budget.size() * 4 / 10;
 
-        return budget.get(numOfScholars - 1).getAverageRating();
+        if (numOfScholars == 0.0) {
+            return 1000000.0;
+        }
+
+        return budget.get(numOfScholars).getAverageRating();
     }
 
     public String getBudgetTable() {
@@ -67,8 +76,15 @@ public class RatingTable {
 
         String tableString = "BUDGET: \n" + budget.size() + "\n";
 
+        Double scholar = this.getMinimumScholarRating();
+
         for (Student student : budget) {
-            tableString += student.getName() + " " + student.getAverageRating() + '\n';
+            tableString += student.getName() + " " + student.getAverageRating() + " ";
+            if (student.getAverageRating() >= scholar) {
+                tableString += "SCHOLAR";
+                student.setScholar(true);
+            }
+            tableString += "\n";
         }
 
         return tableString;

@@ -5,6 +5,7 @@ public class Student implements Comparable<Student> {
     private final String name;
     private final ArrayList<Integer> rating;
     private final Boolean budget;
+    private Boolean scholar = false;
 
     public Student(String name, ArrayList<Integer> rating, Boolean budget) {
         this.name = name;
@@ -31,6 +32,10 @@ public class Student implements Comparable<Student> {
 
     public Boolean getBudget() {
         return budget;
+    }
+
+    public void setScholar(Boolean scholar) {
+        this.scholar = scholar;
     }
 
     @Override
