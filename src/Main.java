@@ -4,21 +4,26 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(50);
-        list.add(1);
-
-        Student student = new Student("kappa", list, true);
+        ArrayList<Integer> list1 = new ArrayList<>();
+        list1.add(50);
+        list1.add(1);
+        Student student1= new Student("kappa", list1, true);
 
         ArrayList<Integer> list2 = new ArrayList<>();
         list2.add(1000);
         Student student2 = new Student("kappa1", list2, false);
 
-        RatingTable ratingTable = new RatingTable();
-        ratingTable.addStudent(student);
-        ratingTable.addStudent(student2);
+        ArrayList<Integer> list3 = new ArrayList<>();
+        list3.add(1);
+        Student student3 = new Student("kappa1", list3, false);
 
-        System.out.println(ratingTable.getRatingTable());
+        RatingTable ratingTable = new RatingTable();
+        ratingTable.addStudent(student1);
+        ratingTable.addStudent(student2);
+        ratingTable.addStudent(student3);
+
+        System.out.println(ratingTable.getNonBudgetTable());
+        System.out.println(ratingTable.getBudgetTable());
     }
 
 }
