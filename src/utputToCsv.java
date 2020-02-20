@@ -1,6 +1,13 @@
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.*;
 class OutputToCsv {
-    PrintWriter writer = new PrintWriter(filename, "UTF-8");
-    writer.println(studentslist);
-    writer.close();
+    public void Output(String args[]) {
+        try (FileWriter writer = new FileWriter("Output.csv")) {
+            writer.write(studentslist);
+            writer.append('\n');
+            writer.flush();
+        } catch (IOException ex) {
+            System.out.println((ex.getMessage()));
+        }
     }
+}
