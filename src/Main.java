@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 
 public class Main {
@@ -17,10 +20,24 @@ public class Main {
         list3.add(1);
         Student student3 = new Student("kappa3", list3, false);
 
+        OutputToCsv output = new OutputToCsv();
+        File[] files =  output.filesInFolder("./input");
+
         RatingTable ratingTable = new RatingTable();
-        ratingTable.addStudent(student1);
+        /*ratingTable.addStudent(student1);
         ratingTable.addStudent(student2);
-        ratingTable.addStudent(student3);
+        ratingTable.addStudent(student3);*/
+
+        for (File file : files) {
+            System.out.println(file);
+            MyReader reader = new MyReader();
+            try {
+                ArrayList<Student> students = reader.read(file.getPath());
+                ratingTable.addListOfStudents(students);
+            } catch (IOException ex) {
+
+            }
+        }
 
         ratingTable.getNonBudgetTable();
         ratingTable.getBudgetTable();

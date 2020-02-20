@@ -19,10 +19,11 @@ class OutputToCsv {
             }
         }
 
-    public void filesInFolder(String folder)
+    public File[] filesInFolder(String folder)
     {
         File myFolder = new File(folder);
         File[] files = myFolder.listFiles();
+        return files;
     }
     }
 
