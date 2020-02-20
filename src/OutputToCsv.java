@@ -18,6 +18,12 @@ class OutputToCsv {
                 System.out.println((ex.getMessage()));
             }
         }
+
+    public void filesInFolder(String folder)
+    {
+        File myFolder = new File(folder);
+        File[] files = myFolder.listFiles();
+    }
     }
 
 
