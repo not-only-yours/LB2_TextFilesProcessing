@@ -1,7 +1,7 @@
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.*;
 import java.util.ArrayList;
-import java.io.IOException;
 class OutputToCsv {
     public void output(ArrayList<Student> studentsList,String filename) {
         try (FileWriter writer = new FileWriter(filename)) {
