@@ -68,13 +68,17 @@ public class RatingTable {
         return budget.get(numOfScholars).getAverageRating();
     }
 
-    public String getBudgetTable() {
+    public void getBudgetTable() {
 
         this.sortStudentsList();
 
         ArrayList<Student> budget = this.getBudget();
 
-        String tableString = "BUDGET: \n" + budget.size() + "\n";
+        OutputToCsv output = new OutputToCsv();
+
+        output.output(budget, "budget.csv");
+
+        /*String tableString = "BUDGET: \n" + budget.size() + "\n";
 
         Double scholar = this.getMinimumScholarRating();
 
@@ -87,22 +91,26 @@ public class RatingTable {
             tableString += "\n";
         }
 
-        return tableString;
+        return tableString;*/
     }
 
-    public String getNonBudgetTable() {
+    public void getNonBudgetTable() {
 
         this.sortStudentsList();
 
         ArrayList<Student> nonBudget = this.getNonBudget();
 
-        String tableString = "NON BUDGET: \n" + nonBudget.size() + "\n";
+        OutputToCsv output = new OutputToCsv();
+
+        output.output(nonBudget, "nonbudget.csv");
+
+        /*String tableString = "NON BUDGET: \n" + nonBudget.size() + "\n";
 
         for (Student student : nonBudget) {
             tableString += student.getName() + " " + student.getAverageRating() + '\n';
         }
 
-        return tableString;
+        return tableString;*/
     }
 
     public String getGlobalTable() {

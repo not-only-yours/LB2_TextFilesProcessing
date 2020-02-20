@@ -22,8 +22,8 @@ public class Main {
         ratingTable.addStudent(student2);
         ratingTable.addStudent(student3);
 
-        System.out.println(ratingTable.getNonBudgetTable());
-        System.out.println(ratingTable.getBudgetTable());
+        ratingTable.getNonBudgetTable();
+        ratingTable.getBudgetTable();
     }
 
 }
