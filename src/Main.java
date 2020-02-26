@@ -20,7 +20,7 @@ public class Main {
         Student student3 = new Student("kappa3", list3, false);
 
         OutputToCsv output = new OutputToCsv();
-        File[] files =  output.filesInFolder("./input");
+        File[] files =  output.filesInFolder("C:\\Users\\darty\\OneDrive\\Документы\\GitHub\\LB2_TextFilesProcessing\\input");
 
         RatingTable ratingTable = new RatingTable();
         /*ratingTable.addStudent(student1);
