@@ -43,7 +43,7 @@ public class Student implements Comparable<Student> {
         if (this.budget && !otherStudent.budget) {
             return 1;
         } else if (!this.budget && otherStudent.budget) {
-            return 1;
+            return -1;
         } else {
             if(this.getAverageRating() < otherStudent.getAverageRating()) {
                 return 1;

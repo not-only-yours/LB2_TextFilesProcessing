@@ -36,6 +36,8 @@ public class RatingTable {
             }
         }
 
+        sortStudentsList();
+
         return budget;
     }
 
@@ -53,9 +55,11 @@ public class RatingTable {
 
     public Double getMinimumScholarRating() {
 
-        for (Student student : studentsList) {
+        /*for (Student student : studentsList) {
             student.setScholar(false);
-        }
+        }*/
+
+        this.sortStudentsList();
 
         ArrayList<Student> budget = this.getBudget();
 
@@ -68,41 +72,52 @@ public class RatingTable {
         return budget.get(numOfScholars).getAverageRating();
     }
 
+    public ArrayList<Student> getScholar() {
+        Double scholar = getMinimumScholarRating();
+        ArrayList<Student> scholars = new ArrayList<>();
+
+        for (Student student : studentsList) {
+            if (student.getBudget() && student.getAverageRating() >= scholar) {
+                scholars.add(student);
+            }
+        }
+
+        return scholars;
+    }
+
+    public ArrayList<Student> getNonScholar() {
+        Double scholar = getMinimumScholarRating();
+        ArrayList<Student> nonScholars = new ArrayList<>();
+
+        for (Student student : studentsList) {
+            if (!student.getBudget() || student.getAverageRating() < scholar) {
+                nonScholars.add(student);
+            }
+        }
+
+        return nonScholars;
+    }
+
     public void getBudgetTable() {
 
-        this.sortStudentsList();
+        //this.sortStudentsList();
 
-        ArrayList<Student> budget = this.getBudget();
+        ArrayList<Student> scholars = this.getScholar();
 
         OutputToCsv output = new OutputToCsv();
 
-        output.output(budget, "budget.csv");
-
-        /*String tableString = "BUDGET: \n" + budget.size() + "\n";
-
-        Double scholar = this.getMinimumScholarRating();
-
-        for (Student student : budget) {
-            tableString += student.getName() + " " + student.getAverageRating() + " ";
-            if (student.getAverageRating() >= scholar) {
-                tableString += "SCHOLAR";
-                student.setScholar(true);
-            }
-            tableString += "\n";
-        }
-
-        return tableString;*/
+        output.output(scholars, "scholar.csv");
     }
 
     public void getNonBudgetTable() {
 
-        this.sortStudentsList();
+        //this.sortStudentsList();
 
-        ArrayList<Student> nonBudget = this.getNonBudget();
+        ArrayList<Student> nonScholars = this.getNonScholar();
 
         OutputToCsv output = new OutputToCsv();
 
-        output.output(nonBudget, "nonbudget.csv");
+        output.output(nonScholars, "nonScholars.csv");
 
         /*String tableString = "NON BUDGET: \n" + nonBudget.size() + "\n";
 
