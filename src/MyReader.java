@@ -19,10 +19,27 @@ public class MyReader {
         while (scanner.hasNextLine()) {
             lex = new ArrayList<>();
             String buff = scanner.nextLine();
-            for (String nex : buff.split("\\s*,\\s*")) {
-                lex.add(nex);
+            boolean is = false;
+            if(buff.charAt(0)== '"')is = true;
+            int i=0,j=0;
+            String[] qq= buff.split("\\s*,\\s*");
+            if(is) {
+                do{
+                    nameStudent+=(buff.charAt(i));
+                    i++;
+                }while(buff.charAt(i)!='"');
             }
-            nameStudent = lex.get(0);
+            else
+                do {
+                    nameStudent += (buff.charAt(j));
+                    j++;
+                } while (buff.charAt(j) != ',');
+                int h=1;
+                if(!is) h=0;
+                for (; h < qq.length; h++) {
+                    lex.add(qq[h]);
+                }
+
             markOfStudent = new ArrayList<>();
             markOfStudent.add(Integer.parseInt(lex.get(1)));
             markOfStudent.add(Integer.parseInt(lex.get(2)));
@@ -33,6 +50,7 @@ public class MyReader {
             else budgetOfStudent = false;
             Student student = new Student(nameStudent, markOfStudent, budgetOfStudent);
             students.add(student);
+            System.out.println(student);
         }
         return students;
     }

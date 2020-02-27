@@ -26,5 +26,3 @@ class OutputToCsv {
         return files;
     }
     }
-
-

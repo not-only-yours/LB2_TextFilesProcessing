@@ -11,9 +11,7 @@ public class Main {
 
         System.out.println("Enter directory: ");
         Scanner scanner = new Scanner(System.in);
-        String dir = scanner.nextLine();
-
-        File[] files =  output.filesInFolder(dir);
+        File[] files =  output.filesInFolder("./input");
 
         RatingTable ratingTable = new RatingTable();
 
